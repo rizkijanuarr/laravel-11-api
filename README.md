@@ -105,7 +105,6 @@ Langkah-langkah untuk menginstal Restful API Laravel 11 ini:
     ```
 2. STORE
 
-    > [!IMPORTANT]\
     > Masuk ke dalam tab (Body) dan pilih (form-data)
 
     | KEY     | TYPE   | VALUE                      |
@@ -126,6 +125,57 @@ Langkah-langkah untuk menginstal Restful API Laravel 11 ini:
             "created_at": "2024-06-25T08:14:50.000000Z",
             "id": 1
         }
+    }
+    ```
+
+3. SHOW
+    ```bash
+    {
+        "success": true,
+        "message": "Detail Data Post!",
+        "data": {
+            "id": 1,
+            "image": "http://127.0.0.1:8000/storage/posts/b20chVL3TBGoRVDHZNXFiqlenfrPH4tosA7TkPq7.png",
+            "title": "Citra Yudisium, yay!",
+            "content": "Yayyy kerennn!",
+            "created_at": "2024-06-25T08:14:50.000000Z",
+            "updated_at": "2024-06-25T08:14:50.000000Z"
+        }
+    }
+    ```
+4. UPDATE
+
+    > Masuk ke dalam tab (Body) dan pilih (form-data)
+
+    | KEY      | TYPE   | VALUE                         |
+    | -------- | ------ | ----------------------------- |
+    | image    | `file` | Pilih gambar dari komputer    |
+    | title    | `text` | Citra Yudisium, yay! - Update |
+    | content  | `text` | Yayy, kerennn! - Update       |
+    | \_method | `text` | PUT                           |
+
+    ```bash
+    {
+        "success": true,
+        "message": "Data Post Berhasil Diubah!",
+        "data": {
+            "id": 1,
+            "image": "http://127.0.0.1:8000/storage/posts/b20chVL3TBGoRVDHZNXFiqlenfrPH4tosA7TkPq7.png",
+            "title": "Citra Yudisium, yay! - Update",
+            "content": "Yayyy kerennn! - Update",
+            "created_at": "2024-06-25T08:14:50.000000Z",
+            "updated_at": "2024-06-25T08:56:23.000000Z"
+        }
+    }
+    ```
+
+5. DELETE
+
+    ```bash
+    {
+        "success": true,
+        "message": "Data Post Berhasil Dihapus!",
+        "data": null
     }
     ```
 
