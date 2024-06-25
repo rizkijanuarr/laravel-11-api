@@ -1,66 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Restful API Laravel 11
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Daftar Isi
 
-## About Laravel
+-   [Instalasi](#instalasi)
+-   [Daftar Route](#routing)
+-   [Fitur](#fitur)
+-   [Kontak](#kontak)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Instalasi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Langkah-langkah untuk menginstal Restful API Laravel 11 ini:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clone repositori ini.
+    ```bash
+    git clone git@github.com:rizkijanuarr/laravel-11-api.git
+    ```
+2. Masuk ke direktori proyek.
+    ```bash
+    cd laravel-11-api
+    ```
+3. Copy .env.example to .env
+    ```bash
+    cp .env.example .env
+    ```
+4. Install Composer.
+    ```bash
+    composer install
+    ```
+5. Generate App Key.
+    ```bash
+    php artisan key:generate
+    ```
+6. Konfigurasi Database on file .env
+    ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel-11-api
+    DB_USERNAME=root
+    DB_PASSWORD=sesuaikan
+    ```
+7. Storage link.
+    ```bash
+    php artisan storage:link
+    ```
+8. Migration ke Database.
+    ```bash
+    php artisan migrate
+    ```
+9. Jalankan web server.
+    ```bash
+    php artisan serve
+    ```
 
-## Learning Laravel
+## Routing
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```markdown
+-   http://127.0.0.1:8000/api/v1/posts || GET ✅
+-   http://127.0.0.1:8000/api/v1/posts || STORE ✅
+-   http://127.0.0.1:8000/api/v1/posts/1 || SHOW ✅
+-   http://127.0.0.1:8000/api/v1/posts/1 || UPDATE ✅
+-   http://127.0.0.1:8000/api/v1/posts/1 || DELETE ✅
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Fitur
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. GET
+    ```bash
+    {
+        "success": true,
+        "message": "List Data Posts",
+        "data": {
+            "current_page": 1,
+            "data": [],
+            "first_page_url": "http://127.0.0.1:8000/api/v1/posts?page=1",
+            "from": null,
+            "last_page": 1,
+            "last_page_url": "http://127.0.0.1:8000/api/v1/posts?page=1",
+            "links": [
+                {
+                    "url": null,
+                    "label": "&laquo; Previous",
+                    "active": false
+                },
+                {
+                    "url": "http://127.0.0.1:8000/api/v1/posts?page=1",
+                    "label": "1",
+                    "active": true
+                },
+                {
+                    "url": null,
+                    "label": "Next &raquo;",
+                    "active": false
+                }
+            ],
+            "next_page_url": null,
+            "path": "http://127.0.0.1:8000/api/v1/posts",
+            "per_page": 5,
+            "prev_page_url": null,
+            "to": null,
+            "total": 0
+        }
+    }
+    ```
+2. STORE
 
-## Laravel Sponsors
+    > [!IMPORTANT]\
+    > Masuk ke dalam tab (Body) dan pilih (form-data)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    | KEY     | TYPE   | VALUE                      |
+    | ------- | ------ | -------------------------- |
+    | image   | `file` | Pilih gambar dari komputer |
+    | title   | `text` | Citra Yudisium, yay!       |
+    | content | `text` | Yayy, kerennn!             |
 
-### Premium Partners
+    ```bash
+    {
+        "success": true,
+        "message": "Data Post Berhasil Ditambahkan!",
+        "data": {
+            "image": "http://127.0.0.1:8000/storage/posts/b20chVL3TBGoRVDHZNXFiqlenfrPH4tosA7TkPq7.png",
+            "title": "Citra Yudisium, yay!",
+            "content": "Yayyy kerennn!",
+            "updated_at": "2024-06-25T08:14:50.000000Z",
+            "created_at": "2024-06-25T08:14:50.000000Z",
+            "id": 1
+        }
+    }
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Kontak
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Jika Anda ingin menghubungi saya, Anda dapat mengirim email ke <rzkjanuarr@gmail.com>.
